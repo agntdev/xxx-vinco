@@ -3,17 +3,15 @@
     "name": "Help",
     "steps": [
       {
+        "send": { "callback": "support:help" },
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "editMessageText",
             "payload": {
-              "text": "Access bot usage instructions"
+              "text": "ℹ️ How to use VINCO\n\n• Tap Browse Videos to see the latest content\n• Tap My Subscription to check your plan\n• Free videos are available to everyone\n• Premium content requires a subscription\n\nNeed more help? Reply to this message."
             }
           }
-        ],
-        "send": {
-          "callback": "support:help"
-        }
+        ]
       }
     ]
   }

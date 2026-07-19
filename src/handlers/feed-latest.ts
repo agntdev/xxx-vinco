@@ -1,17 +1,25 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import {
+  registerMainMenuItem,
+  inlineButton,
+  inlineKeyboard,
+} from "../toolkit/index.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "Browse Videos", data: "feed:latest" }) if the toolkit exposes it.
+registerMainMenuItem({ label: "🎬 Browse", data: "feed:latest", order: 10 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
+
+const EMPTY_STATE =
+  "🎬 Latest Videos\n\nBrowse our curated collection of videos.\n\nNo videos available yet — check back soon!";
 
 composer.callbackQuery("feed:latest", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("View vertical feed of latest videos");
+  await ctx.reply(EMPTY_STATE, {
+    reply_markup: inlineKeyboard([
+      [inlineButton("⬅️ Back to menu", "menu:main")],
+    ]),
+  });
 });
 
 export default composer;

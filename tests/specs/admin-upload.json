@@ -1,19 +1,17 @@
 [
   {
-    "name": "/admin_upload",
+    "name": "/admin_upload opens the upload interface",
     "steps": [
       {
+        "send": { "text": "/admin_upload" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Open admin content upload interface"
+              "text": "📤 Upload Video\n\nSend me the video URL or file to upload."
             }
           }
-        ],
-        "send": {
-          "text": "/admin_upload"
-        }
+        ]
       }
     ]
   }
