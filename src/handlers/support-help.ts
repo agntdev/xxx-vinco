@@ -1,17 +1,24 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { inlineButton, inlineKeyboard } from "../toolkit/index.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "Help", data: "support:help" }) if the toolkit exposes it.
+const composer = new Composer<Ctx>();
 
-const composer = new Composer();
+const HELP =
+  "ℹ️ How to use VINCO\n\n" +
+  "• Tap Browse Videos to see the latest content\n" +
+  "• Tap My Subscription to check your plan\n" +
+  "• Free videos are available to everyone\n" +
+  "• Premium content requires a subscription\n\n" +
+  "Need more help? Reply to this message.";
 
 composer.callbackQuery("support:help", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Access bot usage instructions");
+  await ctx.editMessageText(HELP, {
+    reply_markup: inlineKeyboard([
+      [inlineButton("⬅️ Back to menu", "menu:main")],
+    ]),
+  });
 });
 
 export default composer;

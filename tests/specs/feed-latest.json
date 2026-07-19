@@ -3,17 +3,15 @@
     "name": "Browse Videos",
     "steps": [
       {
+        "send": { "callback": "feed:latest" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "View vertical feed of latest videos"
+              "text": "🎬 Latest Videos\n\nBrowse our curated collection of videos.\n\nNo videos available yet — check back soon!"
             }
           }
-        ],
-        "send": {
-          "callback": "feed:latest"
-        }
+        ]
       }
     ]
   }
