@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Browse Videos",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "View vertical feed of latest videos"
+            }
+          }
+        ],
+        "send": {
+          "callback": "feed:latest"
+        }
+      }
+    ]
+  }
+]
